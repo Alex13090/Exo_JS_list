@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <script src="list.js" type="text/javascript" defer></script>
+            <title>List</title>
+        </head>
+        <body>
+            <h1>Liste d'Utilisateur</h1>
+            <label for="prenom">Prénom:</label>
+            <input type="text" value="" id="forFirstname">
+            <label for="prenom">Age:</label>
+            <input type="number" value="" id="forAge">
+            <label for="role">Role:</label>
+            <select name="role" id="forRole">
+                <option value=""></option>
+                <option value="utilisateur">utilisateur</option>
+                <option value="administrateur">administrateur</option>
+            </select>
+            <input type="button" value="Créer" id="button" onclick="resetForm()">
+            <div>
+                <input type="button" value="Tri par ID" id="idSort" onclick="sortById()">
+                <input type="button" value="Tri par prénom" id="firstNameSort" onclick="sortByFirstname()">
+                <input type="button" value="Tri par age" id="ageSort" onclick="sortByAge()">
+                <label for="recherche">Recherche:</label>
+                <input type="search" name="recherche" id="searchingFor">
+            </div>
+            <div id="usersList"></div>
+        </body>
+    </html>
