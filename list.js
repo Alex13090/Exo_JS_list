@@ -11,32 +11,32 @@ function listing() {
     userlist.map(user => {
     // je crée une variable à chaque tour de boucle 
     // qui sera un nouvel element html ol (liste ordonnée)
-    let newOl = document.createElement("ol");
-    // create button
-    let btn = document.createElement("input");
-    btn.setAttribute('type', "button");
-    btn.setAttribute('value', "supprimer");
-    // je crée une condition pour varier les couleurs selon le role
-    if (user.role == "administrateur"){
-        newOl.style.color = "red";
-    } else {
-        newOl.style.color = "blue";
-    }
-    // j'ajoute le text à l'élément crée avec un template string
-    newOl.textContent = 
-        `ID: ${user.id};
-        Prénom: ${user.prenom};
-        Age: ${user.age};
-        Role: ${user.role}`;
-    // enfin j'ajoute cet élément à la variable qui fait appelle à la div.
-    list.appendChild(newOl);
-    // add button after list
-    newOl.appendChild(btn);
+        let newOl = document.createElement("ol");
+        // create button
+        let btnDel = document.createElement("input");
+        btnDel.setAttribute('type', "button");
+        btnDel.setAttribute('value', "supprimer");
+        // je crée une condition pour varier les couleurs selon le role
+        if (user.role == "administrateur"){
+            newOl.style.color = "red";
+        } else {
+            newOl.style.color = "blue";
+        }
+        // j'ajoute le text à l'élément crée avec un template string
+        newOl.textContent = 
+            `ID: ${user.id};
+            Prénom: ${user.prenom};
+            Age: ${user.age};
+            Role: ${user.role}`;
+        // enfin j'ajoute cet élément à la variable qui fait appelle à la div.
+        list.appendChild(newOl);
+        // add button after list
+        newOl.appendChild(btnDel);
 
-    btn.addEventListener("click", event => {
-        list.removeChild(newOl);
+        btnDel.addEventListener("click", event => {
+            list.removeChild(newOl);
+        });
     });
-});
 }
 listing();
 // create new user
@@ -65,7 +65,13 @@ function resetForm() {
 let idSort = document.getElementsByTagName("idSort");
 let firstNameSort = document.getElementsByTagName("firstNameSort");
 let ageSort = document.getElementsByTagName("ageSort");
-
+// count nbr clic    
+/*
+let count = 0;
+button.onclick = function() {
+  count += 1;
+};
+*/
 function sortById() {
     userlist.sort((a, b) => {
         return a.id - b.id;
@@ -90,12 +96,15 @@ function sortByAge() {
     listing();
 }
 // searching
-function searchBy() {
-    let searchValue = document.getElementById("searchingFor").value;
+let searchValue = document.getElementById("searchingFor").value;
+searchValue.addEventListener("input", event => {
     let newUserList = userlist.filter(
         user => user.age == searchValue
         || user.prenom.includes(searchValue)
         || user.role.includes(searchValue)
         || user.id == searchValue
     );
-}
+    list.innerHTML = "";
+    listing(newUserList);
+});
+    
