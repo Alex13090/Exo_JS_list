@@ -62,9 +62,9 @@ function resetForm() {
     return;
 }
 // sort By
-let idSort = document.getElementsByTagName("idSort");
-let firstNameSort = document.getElementsByTagName("firstNameSort");
-let ageSort = document.getElementsByTagName("ageSort");
+let idSort = document.getElementById("idSort");
+let firstNameSort = document.getElementById("firstNameSort");
+let ageSort = document.getElementById("ageSort");
 // count nbr clic    
 /*
 let count = 0;
